@@ -1,0 +1,42 @@
+class Solution{
+public:
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    
+	    int ans=-1;
+	    int maxi=0;
+	    int total=n*m;
+	    int row=-1,cnt=0;
+	    
+	 //👉 Brute Force T.C O(n*m)
+	    for(int i=0;i<n;i++){
+	        int cnt=0;
+	        for(int j=0;j<m;j++){
+	            if(arr[i][j]==1){
+	                cnt++;
+	        }
+	    }
+	    if(cnt>maxi){
+	        maxi=cnt;
+	        ans=i;
+	    }
+	}
+    //👉Optimal T.C O(n+m)
+        for(int i=0;i<total;i++){
+            if( i%m==0){
+                row++;
+                // cout<<row <<" ";
+                cnt=0;
+            }
+            if(arr[i/m][i%m]==1){
+                cnt++;
+            }
+            if(cnt>maxi){
+                maxi=cnt;
+                // cout<<row<<"->";
+                ans=row;
+            }
+        }
+        // cout<<9%m<<"-> ";
+return ans;
+}
+};
